@@ -38,6 +38,12 @@ window.configure(bg = "#DDD3BA")
 
 global output_path
 
+image_uploaded = False
+
+latitude = None
+longitude = None
+timestamp = None
+
 def select_path():
     f_types = [('Image Files', ('*.jpg', '*.jpeg', '*.png')), ('All Files', '*.*')]
     output_path = filedialog.askopenfilename(filetypes=f_types)
@@ -64,7 +70,16 @@ def upload_image():
     path = OUTPUT_PATH.parent / Path(r"temp/local_image.png")
     img.save(path)
     path_entry.delete(0, tk.END)
-    path_entry.insert(0, "Saved!")
+    path_entry.insert(0, "Saved! Please close all windows to continue.")
+    global image_uploaded
+    image_uploaded = True
+
+def image_uploaded_check():
+    return image_uploaded
+
+def reset_image_uploaded():
+    global image_uploaded
+    image_uploaded = False
 
 def image_details():
     return(latitude, longitude, timestamp)

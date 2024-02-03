@@ -24,6 +24,22 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame3")
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
+def search():
+    # run DB access code here
+    text = entry_4.get()
+    entry_3.delete(0, tk.END)
+    entry_3.insert(0, "data: " + text)
+
+def run_gui():
+    gui_path = OUTPUT_PATH / Path(r"gui.py")
+    print(gui_path)
+    os.system(f'python "{gui_path}"')
+    exit()
+
+def done():
+    run_gui()
+    exit()
+
 
 window = Tk()
 window.title("Natural Disasters Response System")
@@ -58,7 +74,7 @@ button_1 = Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_1 clicked"),
+    command=done,
     relief="flat"
 )
 button_1.place(
@@ -90,7 +106,7 @@ button_3 = Button(
     image=button_image_3,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_3 clicked"),
+    command=search,
     relief="flat"
 )
 button_3.place(
