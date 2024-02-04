@@ -2,4 +2,4 @@
 
 In the chaos of natural disasters, it's difficult for first responders to find people behind all the rubble. MSSLAL is a tool to help identify stranded people and other dangers using AI vision models.
 
-Demo Link: https://github.com/julialding/imagine
+Demo Link: https://www.youtube.com/watch?v=BWdXzPxWl7U
