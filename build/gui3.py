@@ -25,10 +25,15 @@ def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 def search():
-    # run DB access code here
+    # run DB access code here  "people in danger near fire"
     text = entry_4.get()
+    text = "The image that best fits the description is the one with the building fully engulfed in flames while two young children stand on the street watching. The fire is intense, with a large structure burning fiercely, and emergency services are present on the scene. The children's proximity to the fire suggests imminent danger."
     entry_3.delete(0, tk.END)
-    entry_3.insert(0, "data: " + text)
+    entry_3.insert(0, text)
+    entry_2.delete(0, tk.END)
+    entry_2.insert(0, "40.809461")
+    entry_1.delete(0, tk.END)
+    entry_1.insert(0, "-73.959218")
 
 def run_gui():
     gui_path = os.path.join(OUTPUT_PATH, "gui.py")
@@ -226,7 +231,7 @@ canvas.create_text(
     476.0,
     307.0,
     anchor="nw",
-    text="Timestamp:",
+    text="Text:",
     fill="#5C4E3D",
     font=("LibreBaskerville Regular", 16 * -1)
 )
