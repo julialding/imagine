@@ -8,8 +8,8 @@ from image_descriptor import generate_description
 CURRENT_PATH = Path(__file__).parent
 TEMP_PATH = CURRENT_PATH / Path("temp")
 
-gui_path = CURRENT_PATH / Path("build/gui.py")
-gui1_path = CURRENT_PATH / Path("build/gui1.py")
+gui_path = os.path.join(CURRENT_PATH, "build/gui.py")
+gui1_path = os.path.join(CURRENT_PATH, "build/gui1.py")
 print(gui_path)
 
 os.system(f'python "{gui_path}"')

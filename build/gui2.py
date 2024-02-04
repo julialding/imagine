@@ -22,7 +22,7 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame2")
+ASSETS_PATH = os.path.join(OUTPUT_PATH, "assets/frame2")
 
 
 def relative_to_assets(path: str) -> Path:
@@ -31,7 +31,7 @@ def relative_to_assets(path: str) -> Path:
 
 window = Tk()
 window.title("Natural Disasters Response System")
-logo = tk.PhotoImage(file=ASSETS_PATH / "iconbitmap.gif")
+logo = tk.PhotoImage(file=os.path.join(ASSETS_PATH, "iconbitmap.gif"))
 window.call('wm', 'iconphoto', window._w, logo)
 window.geometry("862x519")
 window.configure(bg = "#DDD3BA")
@@ -53,7 +53,7 @@ def select_path():
 def take_snapshot():
     cap = cv2.VideoCapture(0)
     ret, frame = cap.read()
-    path = OUTPUT_PATH.parent / Path(r"temp/snapshot.jpg")
+    path = os.path.join(OUTPUT_PATH.parent,"temp/snapshot.jpg")
     cv2.imwrite(str(path), frame)
     global output_path
     output_path = path
@@ -67,7 +67,7 @@ def upload_image():
     latitude = entry_1.get()
     longitude = entry_2.get()
     timestamp = entry_3.get()
-    path = OUTPUT_PATH.parent / Path(r"temp/local_image.png")
+    path = os.path.join(OUTPUT_PATH.parent,"temp/local_image.png")
     img.save(path)
     path_entry.delete(0, tk.END)
     path_entry.insert(0, "Saved! Please close all windows to continue.")

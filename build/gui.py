@@ -18,26 +18,26 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 
 OUTPUT_PATH = Path(__file__).parent
 print(OUTPUT_PATH)
-ASSETS_PATH = OUTPUT_PATH / Path(r"assets\frame0")
+ASSETS_PATH = os.path.join(OUTPUT_PATH, "assets/frame0")
 print(ASSETS_PATH)
 
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
 def run_gui2():
-    gui_path = OUTPUT_PATH / Path(r"gui2.py")
+    gui_path = os.path.join(OUTPUT_PATH, "gui2.py")
     print(gui_path)
     os.system(f'python "{gui_path}"')
 
 def run_gui3():
-    gui_path = OUTPUT_PATH / Path(r"gui3.py")
+    gui_path = os.path.join(OUTPUT_PATH, "gui3.py")
     print(gui_path)
     os.system(f'python "{gui_path}"')
 
 
 window = Tk()
 window.title("Natural Disasters Response System")
-logo = tk.PhotoImage(file=ASSETS_PATH / "iconbitmap.gif")
+logo = tk.PhotoImage(file=os.path.join(ASSETS_PATH, "iconbitmap.gif"))
 window.call('wm', 'iconphoto', window._w, logo)
 window.geometry("862x519")
 window.configure(bg = "#DDD3BA")
