@@ -19,7 +19,7 @@ temp_image_path = TEMP_PATH / Path("local_image.png")
 loop = True
 while loop:
     if os.path.exists(temp_image_path):
-        print(image_details())
+        print(image_details()) # replace with db reading
         classify()
         loop = False
 
