@@ -49,6 +49,15 @@ def select_path():
     output_path = filedialog.askopenfilename(filetypes=f_types)
     path_entry.delete(0, tk.END)
     path_entry.insert(0, output_path)
+    getGPS()
+
+def getGPS():
+    # get code here
+    entry_2.delete(0, tk.END)
+    entry_2.insert(0, "40.809461")
+    entry_1.delete(0, tk.END)
+    entry_1.insert(0, "-73.959218")
+    # get timestamp here & print
 
 def take_snapshot():
     cap = cv2.VideoCapture(0)
@@ -60,17 +69,16 @@ def take_snapshot():
     cap.release()
     path_entry.delete(0, tk.END)
     path_entry.insert(0, "Snapshot taken!")
-    entry_2.delete(0, tk.END)
-    entry_2.insert(0, "40.809461")
-    entry_1.delete(0, tk.END)
-    entry_1.insert(0, "-73.959218")
+    getGPS()
 
 def upload_image():
     img = Image.open(output_path)
     global latitude, longitude, timestamp
+    #store gps info from textboxes into csv
     latitude = entry_1.get()
     longitude = entry_2.get()
     timestamp = entry_3.get()
+    #update db here and set status
     path = os.path.join(OUTPUT_PATH.parent,"temp/local_image.png")
     img.save(path)
     path_entry.delete(0, tk.END)

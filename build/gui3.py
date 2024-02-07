@@ -44,6 +44,7 @@ def run_gui():
 
 def done():
     run_gui()
+    window.destroy()
     exit()
 
 

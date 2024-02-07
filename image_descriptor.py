@@ -29,6 +29,8 @@ def generate_description():
     )
 
     print(response.choices[0])
+    # save to db
+
 
 generate_description()
 # returns if image has a description ready
