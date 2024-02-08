@@ -27,12 +27,16 @@ def relative_to_assets(path: str) -> Path:
 def run_gui2():
     gui_path = os.path.join(OUTPUT_PATH, "gui2.py")
     print(gui_path)
+    window.destroy()
     os.system(f'python "{gui_path}"')
+    exit()
 
 def run_gui3():
     gui_path = os.path.join(OUTPUT_PATH, "gui3.py")
     print(gui_path)
+    window.destroy()
     os.system(f'python "{gui_path}"')
+    exit()
 
 
 window = Tk()

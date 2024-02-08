@@ -2,7 +2,7 @@
 from openai import OpenAI
 import os
 global descriptioned
-# os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = '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'
 # Microsoft code here
 def generate_description():
     print("Classifying image")

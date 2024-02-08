@@ -12,6 +12,7 @@ from datetime import datetime
 import geocoder
 from geopy.geocoders import Nominatim
 import geopy
+import csv
 
 
 OUTPUT_PATH = Path(__file__).parent
@@ -57,6 +58,7 @@ def getGPS():
     location = geocoder.ip("me")
     latitude = location.latlng[0]
     longitude = location.latlng[1]
+    # include error handling for no connection
     print(str(latitude))
     print(longitude)
 
@@ -81,8 +83,19 @@ def take_snapshot():
     path_entry.insert(0, "Snapshot taken!")
     getGPS()
 
+def get_new_id():
+    with open(os.path.join(OUTPUT_PATH.parent, "database.csv"), 'r') as file:
+        next(file)
+        reader = csv.reader(file)
+        last_id = 0
+        for row in reader:
+            last_id = int(row[0])
+        new_id = last_id + 1
+    return new_id
+
 
 def upload_image():
+    global output_path
     img = Image.open(output_path)
     global latitude, longitude, timestamp
     # store gps info from textboxes into csv
@@ -92,10 +105,38 @@ def upload_image():
     # update db here and set status
     path = os.path.join(OUTPUT_PATH.parent, "temp/local_image.png")
     img.save(path)
+
+    # Get the last previous id number in the database.csv file and increase it by one
+    new_id = get_new_id()
+
+    image_path = os.path.join(OUTPUT_PATH.parent, f"images/image_{new_id}.png")
+    outImg = Image.open(path)
+    outImg.save(image_path)
+    print(image_path)
+
+    # Create a new line in the database.csv file
+    with open(os.path.join(OUTPUT_PATH.parent, "database.csv"), 'a', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow([new_id, image_path, latitude, longitude, timestamp, "Pending"])
+
     path_entry.delete(0, tk.END)
     path_entry.insert(0, "Saved! Please close all windows to continue.")
+    tk.messagebox.showinfo(
+            title="Success!", message="Your image has sucessfully been saved and will be processed. \n\nPlease close all windows to continue")
     global image_uploaded
     image_uploaded = True
+
+def btn_clicked():
+    global output_path
+    output_path = path_entry.get()
+    output_path = output_path.strip()
+    
+    if not output_path:
+        tk.messagebox.showerror(
+            title="Invalid Path!", message="Enter a valid output path.")
+        return
+    
+    upload_image()
 
 
 def image_uploaded_check():
@@ -136,7 +177,7 @@ button_1 = tk.Button(
     image=button_image_1,
     borderwidth=0,
     highlightthickness=0,
-    command=upload_image,
+    command=btn_clicked,
     relief="flat"
 )
 button_1.place(

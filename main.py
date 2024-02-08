@@ -1,8 +1,9 @@
 import os, sys
 from pathlib import Path
-from build.gui2 import image_uploaded_check, image_details
+# from build.gui2 import image_uploaded_check, image_details
 from image_classifier import image_processed, classify
 from image_descriptor import generate_description
+from database_handler import *
 
 
 CURRENT_PATH = Path(__file__).parent
@@ -18,14 +19,15 @@ os.system(f'python "{gui_path}"')
 temp_image_path = TEMP_PATH / Path("local_image.png")
 loop = True
 while loop:
-    if os.path.exists(temp_image_path):
-        print(image_details()) # replace with db reading
+    if getLatestStatus() == "Pending":
+        # print(image_details()) # replace with db reading
         classify()
         loop = False
 
     if image_processed():
         os.system(f'python "{gui1_path}"')
         generate_description()
+        os.remove(temp_image_path)
 
 
 
