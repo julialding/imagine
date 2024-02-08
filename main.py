@@ -19,14 +19,16 @@ os.system(f'python "{gui_path}"')
 temp_image_path = TEMP_PATH / Path("local_image.png")
 loop = True
 while loop:
-    status  = getLatestStatus()
-
-    if status == "Pending":
-        generate_description()
-        os.system(f'python "{gui1_path}"')
+    if getLatestStatus() == "Pending":
+        # print(image_details()) # replace with db reading
+        classify()
         loop = False
 
-    if status == "Processed":
-        print("Image has been processed")
-        # os.remove(temp_image_path)
+    if image_processed():
+        os.system(f'python "{gui1_path}"')
+        generate_description()
+        os.remove(temp_image_path)
+
+
+
 
