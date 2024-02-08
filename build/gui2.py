@@ -117,7 +117,7 @@ def upload_image():
     # Create a new line in the database.csv file
     with open(os.path.join(OUTPUT_PATH.parent, "database.csv"), 'a', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow([new_id, image_path, latitude, longitude, timestamp, "Pending"])
+        writer.writerow([new_id, image_path, latitude, longitude, timestamp, "Pending", " "])
 
     path_entry.delete(0, tk.END)
     path_entry.insert(0, "Saved! Please close all windows to continue.")
