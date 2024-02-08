@@ -1,1 +1,8 @@
+<<<<<<< Updated upstream
 id	image	latitude	longitude	timestamp	significance	text	fire	flood	person	animal	damage
+=======
+id	image	latitude	longitude	timestamp	significance	text	fire	flood	person	animal	damage
+01,c:\Users\mikul\OneDrive\Code Projects\BYRDS\imagine\images/image_1.png,40.7947,-73.9425,2024-02-08 01:21:33,Pending
+2,c:\Users\mikul\OneDrive\Code Projects\BYRDS\imagine\images/image_2.png,40.7947,-73.9425,2024-02-08 01:24:23,A beautiful image of a nature boardwalk.,Processed
+3,c:\Users\mikul\OneDrive\Code Projects\BYRDS\imagine\images/image_3.png,40.7947,-73.9425,2024-02-08 01:44:30,The image shows a large fire engulfing multiple buildings with huge flames visible and smoke billowing into the sky. There is a fire truck present indicating emergency services are responding to the blaze. Two children are in the foreground looking at the fire which highlights the presence of civilians possibly at risk. There are electrical wires overhead which may pose an added danger due to the fire and high temperatures. The street is cluttered with various items including what appears to be a cart some furniture and other debris contributing to obstacles in the environment. Immediate dangers include the possible spread of the fire potential building collapse and the risk of smoke inhalation.,Processed
+>>>>>>> Stashed changes
