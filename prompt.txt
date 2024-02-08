@@ -1,35 +1,19 @@
-User
-Create a prompt creator. I'm creating a system that searches automatically through a CSV filled with images taken from drones. The CSV has many features including the image description and the image path. This prompt creator (called BYRD-PC) is a system that takes an input query (like a question) and searches through a csv with the following headers: id	image	latitude	longitude	timestamp	significance	text	fire	flood	person	animal	damage. Basically, this makes it easy to find the right image given a natural language search. People will search for things like "Show me images of humans and dogs in a flood next to a house with a red roof in the northern quadrant of the city at 12am." Note that the CSV doesn't just take one-hot encodings (like if a fire exists) for if the values are true, but also uses the 'text' header for the description of the image taken from the drone. Be concise in generating the prompt for the LLM that accomplishes this task.
-ChatGPT
-To create a prompt for the BYRD-PC (Backyard Reconnaissance Drone - Prompt Creator) system, we need to structure it in a way that effectively translates a natural language query into searchable criteria that match the CSV headers. This involves mapping user queries to the relevant CSV fields: id, image, latitude, longitude, timestamp, significance, text, fire, flood, person, animal, damage. The prompt should guide the language model to identify key elements from the query and correlate these with the CSV's structure. Here's a concise prompt creator guideline:
+Given a text file containing descriptions and IDs from a CSV file, formatted as "ID {ID}: {description}" for each line, and a specific query, analyze the content to identify and return the top 5 IDs most relevant to the query. The query is: "Show me a big red house flooding." Use your understanding of the descriptions to determine their relevance to the query, focusing on the details provided in each description. Consider the context, nuances, and specific language used in the descriptions that may indicate a strong match to the query. Your task is to interpret the query in the context of the information provided in the text file, identify the most relevant IDs based on the descriptions, and list these IDs in order of their relevance. Use the following Python function if needed: import pandas as pd
 
-BYRD-PC Prompt Creator Guideline:
+def csv_to_text_file(csv_file_path, output_text_file):
+    # Read the CSV file
+    df = pd.read_csv(csv_file_path)
 
-When a user query is received, follow these steps to generate a structured search prompt:
+    # Concatenate ID and description into a single string for each row
+    # Assuming the columns are named 'ID' and 'description'
+    concatenated_descriptions = df.apply(lambda row: f"ID {row['ID']}: {row['description']}\n", axis=1).tolist()
 
-Extract Key Information:
+    # Write concatenated descriptions to a text file
+    with open(output_text_file, 'w') as f:
+        for line in concatenated_descriptions:
+            f.write(line)
 
-Identify and list the main elements from the query, such as conditions (fire, flood), subjects (person, animal), and specific details (house with a red roof, northern quadrant, 12am).
-Map to CSV Headers:
-
-For each identified element, determine the corresponding CSV header(s). E.g., person and animal map to their respective headers, while specific details like a house with a red roof need to be searched within the text description.
-Temporal and Spatial Constraints:
-
-Extract any mentioned time (timestamp) and location details (latitude, longitude, "northern quadrant") to narrow down the search.
-Significance and Specific Conditions:
-
-Note any specific conditions (e.g., flood) and if the query implies a search for images of high significance.
-Generate Structured Prompt:
-
-Combine the mapped headers and identified details into a structured prompt that clearly states what to look for in each field.
-Example Structured Prompt for LLM:
-
-"Generate a search command to find images in the CSV where:
-
-The text field describes a scene with humans and dogs near a house with a red roof.
-The flood field is marked as present.
-The image should be located in the northern quadrant of the city.
-The timestamp indicates the image was taken around 12am.
-Include any person and animal in the description.
-Focus on entries with a high significance score if mentioned."
-This approach allows the BYRD-PC to systematically parse natural language queries into actionable search prompts that align with the structured data in the CSV, ensuring users can effectively find the drone images they're looking for.
+# Example usage
+csv_file_path = 'path/to/your/csvfile.csv'
+output_text_file = 'output_descriptions.txt'
+csv_to_text_file(csv_file_path, output_text_file)
