@@ -2,7 +2,6 @@ import sys
 import os
 import tkinter as tk
 import tkinter.messagebox as tk1
-import tkinter.filedialog
 from pathlib import Path
 import tkinter as tk
 from tkinter import filedialog
@@ -122,7 +121,7 @@ def upload_image():
     path_entry.delete(0, tk.END)
     path_entry.insert(0, "Saved! Please close all windows to continue.")
     tk.messagebox.showinfo(
-            title="Success!", message="Your image has sucessfully been saved and will be processed. \n\nPlease close all windows to continue")
+            title="Success!", message="Your image has sucessfully been saved and will be processed. \n\nPlease close all windows to continue. A new window will open once the process is complete")
     global image_uploaded
     image_uploaded = True
 

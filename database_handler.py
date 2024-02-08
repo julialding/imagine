@@ -6,6 +6,29 @@ from pathlib import Path
 # Code duplicate to gui2.py
 OUTPUT_PATH = Path(__file__)
 
+def saveIdsToCSV(ids):
+    with open(os.path.join(OUTPUT_PATH.parent, "database.csv"), 'r') as file:
+        next(file)
+        reader = csv.reader(file)
+        rows = [row for row in reader if int(row[0]) in ids]
+
+    with open(os.path.join(OUTPUT_PATH.parent, "output.csv"), 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerows(rows)
+
+def getTopRow():
+    with open(os.path.join(OUTPUT_PATH.parent, "output.csv"), 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            return row
+
+def runRAG():
+    # run RAG code here with AI
+
+    #get list of ids
+    # saveIdsToCSV()
+    return True # when complete
+
 def get_new_id():
     with open(os.path.join(OUTPUT_PATH.parent, "database.csv"), 'r') as file:
         next(file)
@@ -53,8 +76,8 @@ def updateLatestData(text, significance):
     
     if data:
         last_line_columns = data[-1].strip().split(',')
-        last_line_columns[5] = significance  # 'significance' column
-        last_line_columns[6] = text
+        last_line_columns[5] = text  # 'significance' column
+        last_line_columns[6] = significance
         data[-1] = ','.join(last_line_columns) + '\n'
     else:
         print("The file is empty or an error occurred reading the data.")

@@ -54,6 +54,7 @@ canvas = Canvas(
 )
 
 canvas.place(x = 0, y = 0)
+"""
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png"))
 button_1 = Button(
@@ -85,7 +86,7 @@ button_2.place(
     width=180.0,
     height=55.0
 )
-
+"""
 canvas.create_text(
     178.0,
     43.00000000000001,
