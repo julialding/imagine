@@ -53,10 +53,17 @@ def getGPS():
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     # Get current location
-    geolocator = Nominatim(user_agent="Natural Disaster Response")
-    location = geocoder.ip("me")
-    latitude = location.latlng[0]
-    longitude = location.latlng[1]
+    try:
+        geolocator = Nominatim(user_agent="Natural Disaster Response")
+        location = geocoder.ip("me")
+        latitude = location.latlng[0]
+        longitude = location.latlng[1]
+    except:
+        latitude = 0
+        longitude = 0
+        tk.messagebox.showerror(
+            title="No GPS", message="No GPS data found.")
+
     # include error handling for no connection
     print(str(latitude))
     print(longitude)

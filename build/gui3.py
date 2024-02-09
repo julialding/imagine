@@ -42,7 +42,7 @@ def search():
     text = entry_4.get()
     # save text to txt file
 
-    while not runRAG():
+    while not runRAG(text):
         time.sleep(.2)
         
     id, latitude, logitude, timestamp, sig, output = getTopRow()
