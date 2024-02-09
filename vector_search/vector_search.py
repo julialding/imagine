@@ -16,14 +16,15 @@ from IPython.core.display import HTML
 
 def vector_search(user_query):
 
-
     # Set the paths
     dataset_version = "lite"  # choose "lite" or "full"
-    unsplash_dataset_path = Path("unsplash-dataset") / dataset_version
-    features_path = Path("unsplash-dataset") / dataset_version / "features2"
+    # unsplash_dataset_path = Path("unsplash-dataset") / dataset_version
+    unsplash_dataaset_path = OUTPUT_PATH = Path(__file__).parent.parent / "images"
+    # features_path = Path("unsplash-dataset") / dataset_version / "features"
+    features_path = Path(__file__).parent.parent / "images" / "features"
 
     # Read the photos table
-    photos = pd.read_csv(unsplash_dataset_path / "photos.tsv000", sep='\t', header=0)
+    # photos = pd.read_csv(unsplash_dataset_path / "photos.tsv000", sep='\t', header=0)
 
     # Load the features and the corresponding IDs
     photo_features = np.load(features_path / "features.npy")
@@ -70,7 +71,7 @@ def vector_search(user_query):
 
     listIDs = []
     # Iterate over the top 3 results
-    for i in range(3):
+    for i in range(5):
         # Retrieve the photo ID
         idx = best_photos[i][1]
         photo_id = photo_ids[idx]
