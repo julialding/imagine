@@ -94,4 +94,4 @@ def vector_search(user_query):
 
     return listIDs
 
-vector_search("A forest fire.")
+# vector_search("A forest fire.")

@@ -3,6 +3,8 @@ import csv
 import os
 from pathlib import Path
 
+from vector_search.vector_search import vector_search
+
 # Code duplicate to gui2.py
 OUTPUT_PATH = Path(__file__)
 
@@ -12,6 +14,10 @@ def saveIdsToCSV(ids):
         reader = csv.reader(file)
         rows = [row for row in reader if int(row[0]) in ids]
 
+    with open(os.path.join(OUTPUT_PATH.parent, "output.csv"), 'w', newline='') as f:
+        f = open("filename.csv", "w")
+        f.truncate()
+        f.close()
     with open(os.path.join(OUTPUT_PATH.parent, "output.csv"), 'w', newline='') as file:
         writer = csv.writer(file)
         writer.writerows(rows)
@@ -24,9 +30,10 @@ def getTopRow():
 
 def runRAG(text):
     # run RAG code here with AI
-
-    #get list of ids
-    # saveIdsToCSV()
+    features = os.path.join(OUTPUT_PATH.parent, "vector_search\compute_features.py")
+    os.system(f'python "{features}"')
+    ids = vector_search(text)
+    saveIdsToCSV(ids)
     return True # when complete
 
 def get_new_id():

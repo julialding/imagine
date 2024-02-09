@@ -5,7 +5,7 @@ from database_handler import *
 import base64
 
 global descriptioned
-os.environ['OPENAI_API_KEY'] = ''
+os.environ['OPENAI_API_KEY'] = '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'
 OUTPUT_PATH = Path(__file__)
 # Microsoft code here
 
@@ -42,7 +42,7 @@ def generate_description():
     print(response.choices[0])
     text_response = response.choices[0].message.content
     print(text_response)
-    updateLatestData("Processed", text_response)
+    updateLatestData("Processed", (f"\"{text_response.replace(',', '')}\""))
     # save to db
 
 

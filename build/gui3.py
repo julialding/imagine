@@ -41,11 +41,12 @@ def search():
     text = entry_4.get()
     # save text to txt file
     tk.messagebox.showinfo(
-            title="Processing!", message="Your image is being processed. Please wait for the results.")
+            title="Processing!", message="Your image is being processed. Please wait for the results. This may take up 30 seconds. Hit OK to continue.")
     while not runRAG(text):
         time.sleep(.2)
-        
+    
     id, loc, latitude, logitude, timestamp, sig, output = getTopRow()
+    print(id, loc, latitude, logitude, timestamp, sig, output)
     entry_3.delete(0, tk.END)
     entry_3.insert(0, f"{id}: {output}")
     entry_2.delete(0, tk.END)
