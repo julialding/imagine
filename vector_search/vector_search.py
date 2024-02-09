@@ -90,6 +90,8 @@ def vector_search(user_query):
         "The top 3 photos that match the search query are:",
         listIDs
     )
+    listIDs = [int(name.split('_')[-1]) for name in listIDs]
+
     return listIDs
 
 vector_search("A forest fire.")
