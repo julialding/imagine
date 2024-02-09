@@ -30,8 +30,6 @@ sys.path.append(parent_dir)
 from database_handler import runRAG, getTopRow
 
 
-
-
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
@@ -40,12 +38,12 @@ def search():
     text = entry_4.get()
     # save text to txt file
 
-    while not runRAG():
+    while not runRAG(text):
         time.sleep(.2)
         
-    id, latitude, logitude, timestamp, sig, output = getTopRow()
+    id, loc, latitude, logitude, timestamp, sig, output = getTopRow()
     entry_3.delete(0, tk.END)
-    entry_3.insert(0, "{id}: {output}")
+    entry_3.insert(0, f"{id}: {output}")
     entry_2.delete(0, tk.END)
     entry_2.insert(0, latitude)
     entry_1.delete(0, tk.END)

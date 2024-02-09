@@ -22,7 +22,7 @@ def getTopRow():
         for row in reader:
             return row
 
-def runRAG():
+def runRAG(text):
     # run RAG code here with AI
 
     #get list of ids
