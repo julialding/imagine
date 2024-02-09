@@ -9,7 +9,6 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import torch
-import clip
 from PIL import Image
 from IPython.display import Image
 from IPython.core.display import HTML
@@ -28,8 +27,8 @@ from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 OUTPUT_PATH = Path(__file__).parent
 ASSETS_PATH = os.path.join(OUTPUT_PATH, "assets/frame3")
 
-print(OUTPUT_PATH.parent)
-sys.path.append(OUTPUT_PATH.parent)
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+sys.path.append(parent_dir)
 
 from database_handler import runRAG, getTopRow
 
@@ -41,17 +40,20 @@ def search():
     # run DB access code here  "people in danger near fire"
     text = entry_4.get()
     # save text to txt file
-
+    tk.messagebox.showinfo(
+            title="Processing!", message="Your image is being processed. Please wait for the results.")
     while not runRAG(text):
         time.sleep(.2)
         
-    id, latitude, logitude, timestamp, sig, output = getTopRow()
+    id, loc, latitude, logitude, timestamp, sig, output = getTopRow()
     entry_3.delete(0, tk.END)
-    entry_3.insert(0, "{id}: {output}")
+    entry_3.insert(0, f"{id}: {output}")
     entry_2.delete(0, tk.END)
     entry_2.insert(0, latitude)
     entry_1.delete(0, tk.END)
     entry_1.insert(0, logitude)
+    tk.messagebox.showinfo(
+            title="Success!", message="Your data is ready. See this pannel and output.csv for all relevant information.")
 
 def run_gui():
     gui_path = os.path.join(OUTPUT_PATH, "gui.py")
