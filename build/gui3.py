@@ -24,7 +24,12 @@ ASSETS_PATH = os.path.join(OUTPUT_PATH, "assets/frame3")
 print(OUTPUT_PATH.parent)
 sys.path.append(OUTPUT_PATH.parent)
 
+parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+sys.path.append(parent_dir)
+
 from database_handler import runRAG, getTopRow
+
+
 
 
 def relative_to_assets(path: str) -> Path:
