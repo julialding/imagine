@@ -119,7 +119,7 @@ canvas.create_text(
     83.0,
     244.0,
     anchor="nw",
-    text="Image process was successful, and the appropriate action will be taken. \nOnly significant images are saved in the database to make finding critical locations easier. ",
+    text="Image process was successful, and the appropriate action will be taken. \nOnly significant images are saved in the database to make finding critical locations easier. \n\n\n\nPlease cloase the program to finish. \nIf you want to add more images or search the database, please restart the program.",
     fill="#5C4E3D",
     font=("LibreBaskerville Regular", 16 * -1)
 )

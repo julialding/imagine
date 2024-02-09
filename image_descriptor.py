@@ -5,7 +5,7 @@ from database_handler import *
 import base64
 
 global descriptioned
-os.environ['OPENAI_API_KEY'] = ''
+os.environ['OPENAI_API_KEY'] = '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'
 OUTPUT_PATH = Path(__file__)
 # Microsoft code here
 
