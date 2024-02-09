@@ -134,8 +134,8 @@ def upload_image():
 
 def btn_clicked():
     global output_path
-    output_path = path_entry.get()
-    output_path = output_path.strip()
+    # output_path = path_entry.get()
+    # output_path = output_path.strip()
     
     if not output_path:
         tk.messagebox.showerror(

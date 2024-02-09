@@ -2,7 +2,6 @@ import os, sys
 from pathlib import Path
 # from build.gui2 import image_uploaded_check, image_details
 import tkinter.messagebox as tk1
-from image_classifier import image_processed, classify
 from image_descriptor import generate_description
 from database_handler import *
 import tkinter as tk
