@@ -8,3 +8,5 @@ Using Microsoft’s explainable GPT-V API system and a lightweight object detect
 
 
 Project Video: [https://www.youtube.com/watch?v=BWdXzPxWl7U](https://www.youtube.com/watch?v=g-BSe-vjUuE)
+
+[![BRYDS Project Video](https://img.youtube.com/vi/g-BSe-vjUuE/0.jpg)](https://www.youtube.com/watch?v=g-BSe-vjUuE)
